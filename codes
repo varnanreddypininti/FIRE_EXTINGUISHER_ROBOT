@@ -1,0 +1,208 @@
+#define BLYNK_TEMPLATE_ID "TMPL3280QIshh"
+#define BLYNK_TEMPLATE_NAME "Induction Team 9"
+#define BLYNK_AUTH_TOKEN "KxYVwzqEdXlfM31C0VXcri
+8P7C5rhkuH"
+#define BLYNK_PRINT Serial
+#include <WiFi.h>
+#include <BlynkSimpleEsp32.h>
+#include <ESP32Servo.h>
+#define Relay 17
+#define RF 2
+#define RB 4
+#define LF 5
+#define LB 16
+#define ER 32
+#define EL 33
+#define RFlame 36
+#define MFlame 39
+#define LFlame 34
+#define Buzzer 19
+#define PIR 21
+Servo pipeservo;
+#define servopin 18
+bool switchV0 = false;
+void setup() {
+Serial.begin(9600);
+Blynk.begin(BLYNK_AUTH_TOKEN,
+"THE ROBOTICS CLUB",
+"TRCSNIST@2024");
+pinMode(Relay, OUTPUT);
+pinMode(Buzzer, OUTPUT);
+pinMode(PIR, INPUT);
+ESP32PWM::allocateTimer(0);
+ESP32PWM::allocateTimer(1);
+ESP32PWM::allocateTimer(2);
+ESP32PWM::allocateTimer(3);
+pipeservo.setPeriodHertz(50);
+pipeservo.attach(servopin, 1000, 2000);
+pinMode(RF, OUTPUT);
+pinMode(RB, OUTPUT);
+pinMode(LF, OUTPUT);
+pinMode(LB, OUTPUT);
+pinMode(ER, OUTPUT);
+pinMode(EL, OUTPUT);
+pinMode(RFlame, INPUT);
+pinMode(MFlame, INPUT);
+pinMode(LFlame, INPUT);
+}
+void loop() {
+Blynk.run();
+if (switchV0) {
+if (digitalRead(RFlame) == 0) {
+RightMovement();
+}
+if (digitalRead(MFlame) == 0) {
+MiddleMovement();
+}
+if (digitalRead(LFlame) == 0) {
+LeftMovement();
+}
+// Check flame sensors and control buzzer
+if (digitalRead(RFlame) == 0 ||
+digitalRead(MFlame) == 0
+|| digitalRead(LFlame) == 0) {
+digitalWrite(Buzzer, HIGH);
+} else {
+digitalWrite(Buzzer, LOW);
+}
+if (digitalRead(PIR) == HIGH) {
+digitalWrite(Buzzer, HIGH);
+Serial.println("Motion detected!");
+}
+} else {
+digitalWrite(Buzzer, LOW);
+}
+}
+void RightMovement() {
+while (digitalRead(MFlame) == 1) {
+analogWrite(ER, 100);
+analogWrite(EL, 100);
+digitalWrite(RF, LOW);
+digitalWrite(RB, HIGH);
+digitalWrite(LF, HIGH);
+digitalWrite(LB, LOW);
+}
+Stopm();
+ServoMovement();
+}
+void MiddleMovement() {
+Stopm();
+ServoMovement();
+}
+void LeftMovement() {
+while (digitalRead(MFlame) == 1) {
+analogWrite(ER, 100);
+analogWrite(EL, 100);
+digitalWrite(RF, HIGH);
+digitalWrite(RB, LOW);
+digitalWrite(LF, LOW);
+digitalWrite(LB, HIGH);
+}
+Stopm();
+ServoMovement();
+}
+void ServoMovement() {
+digitalWrite(Relay, HIGH);
+for (int i = 0; i <= 180; i += 15) {
+pipeservo.write(i);
+delay(100);
+}
+for (int i = 180; i >= 0; i -= 15) {
+pipeservo.write(i);
+delay(100;
+digitalWrite(Relay, LOW);
+}
+void Stopm() {
+digitalWrite(RF, LOW);
+digitalWrite(RB, LOW);
+digitalWrite(LF, LOW);
+digitalWrite(LB, LOW);
+}
+// Blynk Virtual Pin Handlers
+BLYNK_WRITE(V0) { // Switch
+int value = param.asInt();
+if (value == 1) {
+Serial.println("Switch on V0 is ON");
+switchV0 = true;
+} else {
+Serial.println("Switch on V0 is OFF");
+switchV0 = false;
+Stopm();
+}
+}
+BLYNK_WRITE(V1) {
+if (!switchV0) return;
+int value = param.asInt();
+if (value == 1) {
+Serial.println("Switch on V1 is ON");
+Forward();
+} else {
+Serial.println("Switch on V1 is OFF");
+Stopm();
+}
+}
+BLYNK_WRITE(V2) {
+if (!switchV0) return;
+int value = param.asInt();
+if (value == 1) {
+Serial.println("Switch on V2 is ON");
+Backward();
+} else {
+Serial.println("Switch on V2 is OFF");
+Stopm();
+}
+}
+BLYNK_WRITE(V3) {
+if (!switchV0) return;
+int value = param.asInt();
+if (value == 1) {
+Serial.println("Switch on V3 is ON");
+Right();
+} else {
+Serial.println("Switch on V3 is OFF");
+Stopm();
+}
+}
+BLYNK_WRITE(V4) {
+if (!switchV0) return;
+int value = param.asInt();
+if (value == 1) {
+Serial.println("Switch on V4 is ON");
+Left();
+} else {
+Serial.println("Switch on V4 is OFF");
+Stopm();
+}
+}
+void Forward() {
+analogWrite(ER, 250);
+analogWrite(EL, 250);
+digitalWrite(RF, HIGH);
+digitalWrite(RB, LOW);
+digitalWrite(LF, HIGH);
+digitalWrite(LB, LOW);
+}
+void Backward() {
+analogWrite(ER, 250);
+analogWrite(EL, 250);
+digitalWrite(RF, LOW);
+digitalWrite(RB, HIGH);
+digitalWrite(LF, LOW);
+digitalWrite(LB, HIGH);
+}
+void Right() {
+analogWrite(ER, 250);
+analogWrite(EL, 250);
+digitalWrite(RF, LOW);
+digitalWrite(RB, HIGH);
+digitalWrite(LF, HIGH);
+digitalWrite(LB, LOW);
+}
+void Left() {
+analogWrite(ER, 250);
+analogWrite(EL, 250);
+digitalWrite(RF, HIGH);
+digitalWrite(RB, LOW);
+digitalWrite(LF, LOW);
+digitalWrite(LB, HIGH);
+}
