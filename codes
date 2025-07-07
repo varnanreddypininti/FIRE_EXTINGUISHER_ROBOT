@@ -1,6 +1,6 @@
-#define BLYNK_TEMPLATE_ID "TMPL3280QIshh"
-#define BLYNK_TEMPLATE_NAME "Induction Team 9"
-#define BLYNK_AUTH_TOKEN "KxYVwzqEdXlfM31C0VXcri
+#define BLYNK_TEMPLATE_ID "TMPL3280QIshh"  #insert template id from blynk app
+#define BLYNK_TEMPLATE_NAME "Induction Team 9"  #insert blynk template name
+#define BLYNK_AUTH_TOKEN "KxYVwzqEdXlfM31C0VXcri    # insert blynk authentication token
 8P7C5rhkuH"
 #define BLYNK_PRINT Serial
 #include <WiFi.h>
