@@ -1,10 +1,75 @@
-# FIRE_EXTINGUISHER_ROBOT
-The Fire Extinguisher Robot is a semi-autonomous system designed to detect and extinguish fires in emergency situations. Equipped with an IR sensor for fire detection and an ultrasonic sensor for obstacle avoidance, the robot is controlled wirelessly via the Blynk app through an ESP32 microcontroller. This allows the robot to autonomously navigate towards fire sources while avoiding obstacles, but it can also be manually controlled in real time when needed.
+# 🔥 Fire Extinguisher Robot
 
-The IR sensor detects infrared radiation from flames, triggering the robot to activate its fire suppression system once a fire is identified. This feature ensures a swift response, which is critical in reducing fire damage in urgent scenarios. The ultrasonic sensor helps the robot navigate its surroundings by detecting obstacles, enabling smooth movement even in complex environments.
+An autonomous fire detection and suppression robot developed to identify and extinguish small-scale fires using sensor feedback and a motor-controlled extinguishing mechanism.
 
-While the robot is capable of autonomous operation, it also provides manual control through the Blynk app, which offers a user-friendly interface for steering the robot and monitoring its status. This flexibility ensures that the robot can adapt to different situations, whether operating on its own or being controlled remotely by the user.
+---
 
-The ESP32 microcontroller is the backbone of the robot, enabling communication with the Blynk app and coordinating the various sensors and fire suppression mechanisms. The use of the ESP32 ensures reliable wireless communication, which is crucial for remote control and monitoring.
+## 🔍 Project Overview
 
-This Fire Extinguisher Robot has numerous practical applications, such as in industrial settings, public buildings, or disaster zones. It reduces human exposure to fire hazards while providing a faster response to fire emergencies. The robot’s ability to both autonomously detect fires and be manually controlled through the Blynk app makes it a versatile and effective tool in fire safety.
+Fire accidents are dangerous, especially in enclosed or hazardous environments. This project presents a **low-cost, Arduino-based robotic system** that can:
+
+- **Detect fire** using infrared (IR) or flame sensors  
+- **Navigate** toward the fire source  
+- **Extinguish fire** using a mounted pump/fan or CO₂ sprayer  
+- Operate **autonomously or via remote control**
+
+---
+
+## 🧠 Features
+
+- 🔎 **Flame Detection** using IR/Flame sensor array
+- 🧭 **Autonomous Navigation** with obstacle avoidance
+- 💨 **Fire Suppression System** using pump or fan
+- 🚨 **Buzzer/LED Alert System**
+- 🔋 **Battery Powered**
+
+---
+
+## ⚙️ Hardware Components
+
+| Component            | Function                                 |
+|---------------------|------------------------------------------|
+| Arduino Uno          | Main microcontroller                    |
+| Flame/IR Sensor      | Detects fire presence                   |
+| Ultrasonic Sensor    | Avoids obstacles                        |
+| Motor Driver (L298N) | Controls robot movement                 |
+| DC Motors & Wheels   | Mobility                                |
+| Pump                 | Extinguishes fire                       |
+| Buzzer & LEDs        | Alerts for fire detection               |
+| Power Supply (Battery)| Mobile power source                    |
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Requirements
+
+- Arduino IDE installed
+- Flame Sensor
+- L298N Motor Driver
+- Power source (9V/12V battery)
+
+### 🔧 Setup Instructions
+
+1. Connect sensors and modules as per `circuit_diagram.png`.
+2. Open `fire_extinguisher_bot.ino` in Arduino IDE.
+3. Upload the code to your Arduino board.
+4. Power the robot and test in a controlled environment.
+
+---
+
+## 🔐 Safety Disclaimer
+
+> ⚠️ This robot is designed for **educational purposes only** and **small, controlled fires**.  
+> It is **not** intended for commercial or industrial fire fighting applications.
+
+---
+
+
+## 👤 Author
+- **Varnan Reddy Piuninti**  
+  Member, The Robotics Club – SNIST  
+---
+
+> 🚒 Building smart safety systems with robotics and innovation!
+
