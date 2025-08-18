@@ -52,19 +52,19 @@ Fire accidents are dangerous, especially in enclosed or hazardous environments. 
 ### 🔧 Setup Instructions
 
 1. Connect sensors and modules as per `circuit_diagram.png`.
-2. Open `fire_extinguisher_bot.ino` in Arduino IDE.
-3. Upload the code to your Arduino board.
-4. Power the robot and test in a controlled environment.
+2.The arduio code mentioned in`codes` should be used in Arduino IDE.
+3. Download the Mentioned libraries in Code.
+4. Donload BLYNK IOT app from playstore and Create virtual pins for movement and displa of sensor values.
+5. Paste the neccesary blynk template id and wifi name and password which is connected .
+6. Upload the code to your Arduino board.
+7. Power the robot and test in a controlled environment.
 
 ---
-
 ## 🔐 Safety Disclaimer
 
 > ⚠️ This robot is designed for **educational purposes only** and **small, controlled fires**.  
 > It is **not** intended for commercial or industrial fire fighting applications.
-
 ---
-
 
 ## 👤 Author
 - **Varnan Reddy Pininti**  
