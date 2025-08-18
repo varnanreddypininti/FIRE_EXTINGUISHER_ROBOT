@@ -67,7 +67,7 @@ Fire accidents are dangerous, especially in enclosed or hazardous environments. 
 
 
 ## 👤 Author
-- **Varnan Reddy Piuninti**  
+- **Varnan Reddy Pininti**  
   Member, The Robotics Club – SNIST  
 ---
 
